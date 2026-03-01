@@ -1,0 +1,77 @@
+# .NET Build artifacts
+bin/
+obj/
+*.csproj.user
+*.user
+*.suo
+*.userprefs
+*.sln.docstates
+*.nupkg
+*.snk
+**/bin/
+**/obj/
+**/publish/
+**/TestResults/
+
+# NuGet Packages
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Rider / JetBrains specific
+.idea/
+*.iml
+*.ipr
+*.iws
+_ReSharper*/
+*.[Rr]e[Ss]harper.user
+.vs/
+.vscode/
+.resharper/
+JetBrains.resharper.*
+rider.*
+
+# macOS system files (очень важно для macOS!)
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+.TemporaryItems
+TemporaryItems
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+__MACOSX/
+
+# Avalonia / XAML previewer caches (если используешь Rider preview)
+*.avalonia.preview.cache
+*.avalonia.design.cache
+**/obj/Debug/*/AvaloniaPreviewer*
+
+# Logs and diagnostics
+*.log
+*.pdb
+*.cache
+*.vspscc
+*.vssscc
+
+# Secrets and local configs (никогда не коммитить!)
+appsettings*.json
+secrets.json
+*.pfx
+*.cer
+*.key
+local.settings.json
+
+# Optional: if you use local tools or workloads
+global.json  # если не хочешь коммитить локальные настройки
+
+# Keep large files out (если добавишь assets)
+*.zip
+*.rar
+*.7z
