@@ -2,8 +2,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="using:Money_Converter"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Money_Converter.MainWindow"
-        Title="Money_Converter">
-    Welcome to Avalonia!
+        x:DataType="local:MainWindow"
+        Title="Конвертер валют"
+        Icon="Assets/Icons/change.png">
+        <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto"  Margin="4">
+                <TextBlock Grid.Column="0" Grid.Row="0" Margin="4" FontSize="16" FontWeight="Bold" Text="Конвертер валют"/>
+                <StackPanel Grid.Column="0" Grid.Row="1" Margin="4">
+                        <TextBlock Margin="4" FontSize="14" Text="Исходная валюта"/>
+                        <ComboBox x:Name="FromCurrencyComboBox" Margin="4" Width="150" ItemsSource="{Binding Currencies}" SelectedItem="{Binding FromCurrency}" />
+                </StackPanel>        
+                <StackPanel Grid.Column="1" Grid.Row="1" Margin="4">
+                        <TextBlock Margin="4" FontSize="14" Text="Целевая валюта"/>
+                        <ComboBox x:Name="ToCurrencyComboBox" Margin="4" Width="150" ItemsSource="{Binding Currencies}" SelectedItem="{Binding ToCurrency}"/>
+                </StackPanel>        
+                <StackPanel Grid.Column="2" Grid.Row="1" Margin="4">
+                        <TextBlock Margin="4" FontSize="14" Text="Сумма"/>
+                        <TextBox x:Name="AmountTextBox" Margin="4" Width="150" Watermark="Введите сумму" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>        
+                <Button Grid.Column="0" Grid.Row="2" Margin="4" Padding="8" Content="Конвертировать" Click="ConvertButton_Click"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Margin="4" FontSize="14" x:Name="ResultTextBlock" Text="{Binding Result}"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" 
+                           Margin="4" FontSize="14" Foreground="Blue" 
+                           Text="{Binding StatusMessage}"/>
+        </Grid>        
 </Window>
