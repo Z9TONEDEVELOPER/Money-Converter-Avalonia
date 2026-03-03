@@ -54,7 +54,8 @@
                                     HorizontalAlignment="Center"
                                     Background="#6366F1"  
                                     CornerRadius="30"
-                                    Margin="0,-20,0,-20"/>
+                                    Margin="0,-20,0,-20"
+                                    Click="RevertButton_Click"/>
 
                             <!-- Блок "Целевая валюта" -->
                             <StackPanel>

@@ -71,7 +71,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         var options = new JsonSerializerOptions
         {
-            PropertyNameCaseInsensitive = true   // игнорирует регистр: Base / base / base_code — всё ок
+            PropertyNameCaseInsensitive = true   // игнорирует регистр
         };
         try
         {
@@ -124,7 +124,37 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         // Загружаем курсы после полной загрузки окна
         Loaded += async (s, e) => await LoadExchangeRatesAsync();
     }
+    private async void RevertButton_Click(object? sender, RoutedEventArgs e)
+    {
+        if (_exchangeRates.Count==0)
+        {
+            await LoadExchangeRatesAsync();
+            if (_exchangeRates.Count == 0) return;
+        }
+        if(!decimal.TryParse(Amount, out decimal inputAmount) || inputAmount <= 0)
+        {
+            Result = "Введите корректную сумму";
+            return;
+        }
 
+        if (string.IsNullOrEmpty(FromCurrency) || string.IsNullOrEmpty(ToCurrency))
+        {
+            Result = "Выберите обе валюты";
+            return;
+        }
+        if (!_exchangeRates.ContainsKey(FromCurrency) || !_exchangeRates.ContainsKey(ToCurrency))
+        {
+            Result = "Курс для выбранной валюты не найден";
+            return;
+        }
+        decimal rateFrom = _exchangeRates[ToCurrency];
+        decimal rateTo   = _exchangeRates[FromCurrency];
+
+        decimal amountInUsd = inputAmount / rateFrom;   // From → USD
+        decimal result      = amountInUsd * rateTo;     // USD → To
+
+        Result = $"{inputAmount:F2} {ToCurrency} = {result:F2} {FromCurrency}";
+    }
     private async void ConvertButton_Click(object? sender, RoutedEventArgs e)
     {
         if (_exchangeRates.Count == 0)
