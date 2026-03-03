@@ -1,7 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using Avalonia.Controls;
-using Avalonia.Interactivity;           // для Loaded
+using Avalonia.Interactivity;          
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
